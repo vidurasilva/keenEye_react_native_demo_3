@@ -5,14 +5,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./screens/Home";
 import RestaurantDetails from "./screens/RestaurantDetails";
 
-export default function navigation() {
+export default function RootNavigation() {
   const Stack = createStackNavigator();
   const screenOptions = {
-    headerShow: false,
+    headerShown: false,
   };
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="RestaurantDetails" component={RestaurantDetails} />
       </Stack.Navigator>

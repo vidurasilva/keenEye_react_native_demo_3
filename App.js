@@ -1,7 +1,6 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import Home from "./screens/Home";
+import React from "react";
+import RootNavigation from "./navigation";
 
 export default function App() {
-  return <Home />;
+  return <RootNavigation />;
 }

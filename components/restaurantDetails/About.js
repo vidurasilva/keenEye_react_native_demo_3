@@ -11,14 +11,15 @@ const yelpRestaurantInfo = {
   category: [{ title: "Thai" }, { title: "Comfort Food " }],
 };
 
-const { name, image, category, price, reviews, rating } = yelpRestaurantInfo;
+export default function About(props) {
+  console.log(props.route.params.image);
+  const { name, image, price, reviews, rating, categories } =
+    props.route.params;
+  const formatCategories = categories.map((cat) => cat.title).join(" . ");
+  const description = `${formatCategories} ${
+    price ? " . " + price : ""
+  }. 🎫 . ${rating} 🌟 (${reviews} )`;
 
-const formatCategories = category.map((cat) => cat.title).join(" . ");
-const description = `${formatCategories} ${
-  price ? " . " + price : ""
-}. 🎫 . ${rating} 🌟 (${reviews} )`;
-
-export default function About() {
   return (
     <View>
       <RestaurantImage image={image} />

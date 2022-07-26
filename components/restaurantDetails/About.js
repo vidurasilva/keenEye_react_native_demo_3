@@ -1,16 +1,6 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
 
-const yelpRestaurantInfo = {
-  image:
-    "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
-  name: "Farmhouse Kitchen Thai Cuisine",
-  price: "$$",
-  reviews: "1500",
-  rating: 4.5,
-  category: [{ title: "Thai" }, { title: "Comfort Food " }],
-};
-
 export default function About(props) {
   console.log(props.route.params.image);
   const { name, image, price, reviews, rating, categories } =

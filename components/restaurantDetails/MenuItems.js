@@ -8,35 +8,35 @@ const foods = [
   {
     title: "Lasagna",
     description: "With butter and mushroom , Tomato and Red chili",
-    price: "1212$",
+    price: "12$",
     image:
       "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
   },
   {
     title: "Pizza",
     description: "With butter and mushroom , Tomato and Red chili",
-    price: "1212$",
+    price: "10$",
     image:
       "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
   },
   {
     title: "BBQ",
     description: "With butter and mushroom , Tomato and Red chili",
-    price: "1212$",
+    price: "2$",
     image:
       "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
   },
   {
     title: "Potato Chip",
     description: "With butter and mushroom , Tomato and Red chili",
-    price: "1212$",
+    price: "1$",
     image:
       "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
   },
   {
     title: "Pork curry",
     description: "With butter and mushroom , Tomato and Red chili",
-    price: "1212$",
+    price: "7",
     image:
       "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
   },
@@ -94,7 +94,7 @@ export default function MenuItems({ restaurantName }) {
 }
 
 const FoodInfo = (props) => (
-  <View style={{ width: 240, justifyContent: "space-evenly" }}>
+  <View style={{ width: 215, justifyContent: "space-evenly" }}>
     <Text style={styles.titleStyle}>{props.food.title}</Text>
     <Text>{props.food.description}</Text>
     <Text>{props.food.price}</Text>

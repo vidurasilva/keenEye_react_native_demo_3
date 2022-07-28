@@ -28,8 +28,8 @@ export default function MenuItems({
     dispatch({
       type: "ADD_TO_CART",
       payload: {
-        item,
-        restaurantName: { restaurantName },
+        ...item,
+        restaurantName: restaurantName,
         checkboxValue: checkboxValue,
       },
     });
@@ -38,10 +38,10 @@ export default function MenuItems({
     (state) => state.cartReducer.selectedItems.items
   );
   const isFoodInCart = (food, cartItems) =>
-    Boolean(cartItems.find((item) => item.item.title == food.title));
+    Boolean(cartItems.find((item) => item.title === food.title));
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       {foods.map((food, index) => (
         <View key={index}>
           <View style={styles.menuItemStyle}>
@@ -50,7 +50,7 @@ export default function MenuItems({
             ) : (
               <BouncyCheckbox
                 iconStyle={{
-                  borderColor: "lightgrey",
+                  borderColor: "lightgray",
                   borderRadius: 0,
                 }}
                 fillColor="green"
@@ -59,7 +59,7 @@ export default function MenuItems({
               />
             )}
             <FoodInfo food={food} />
-            <FoodImage food={food} marginLeft={marginLeft ? MenuItems : 0} />
+            <FoodImage food={food} marginLeft={marginLeft ? marginLeft : 0} />
           </View>
           <Divider
             width={0.5}

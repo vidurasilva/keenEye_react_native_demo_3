@@ -3,6 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import OrderItem from "./OrderItem";
+import firebase from "../../firebase";
 
 export default function ViewCart() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -19,6 +20,16 @@ export default function ViewCart() {
     style: "currency",
     currency: "USD",
   });
+
+  const addOrderToFireBase = () => {
+    const db = firebase.firestore();
+    db.collection("orders").add({
+      items: items,
+      restaurantName: restaurantName,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    setModalVisible(false);
+  };
 
   const styles = StyleSheet.create({
     modalContainer: {
@@ -80,7 +91,7 @@ export default function ViewCart() {
                 position: "relative",
               }}
               onPress={() => {
-                setModalVisible(false);
+                addOrderToFireBase();
               }}
             >
               <Text style={{ color: "white", fontSize: 20 }}>Checkout</Text>

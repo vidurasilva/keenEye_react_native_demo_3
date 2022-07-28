@@ -4,44 +4,6 @@ import { Divider } from "react-native-elements/dist/divider/Divider";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useDispatch, useSelector } from "react-redux";
 
-const foods = [
-  {
-    title: "Lasagna",
-    description: "With butter and mushroom , Tomato and Red chili",
-    price: "12$",
-    image:
-      "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
-  },
-  {
-    title: "Pizza",
-    description: "With butter and mushroom , Tomato and Red chili",
-    price: "10$",
-    image:
-      "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
-  },
-  {
-    title: "BBQ",
-    description: "With butter and mushroom , Tomato and Red chili",
-    price: "2$",
-    image:
-      "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
-  },
-  {
-    title: "Potato Chip",
-    description: "With butter and mushroom , Tomato and Red chili",
-    price: "1$",
-    image:
-      "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
-  },
-  {
-    title: "Pork curry",
-    description: "With butter and mushroom , Tomato and Red chili",
-    price: "7",
-    image:
-      "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
-  },
-];
-
 const styles = StyleSheet.create({
   menuItemStyle: {
     flexDirection: "row",
@@ -55,7 +17,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function MenuItems({ restaurantName }) {
+export default function MenuItems({
+  restaurantName,
+  foods,
+  hideCheckbox,
+  marginLeft,
+}) {
   const dispatch = useDispatch();
   const selectItem = (item, checkboxValue) =>
     dispatch({
@@ -78,17 +45,21 @@ export default function MenuItems({ restaurantName }) {
       {foods.map((food, index) => (
         <View key={index}>
           <View style={styles.menuItemStyle}>
-            <BouncyCheckbox
-              iconStyle={{
-                borderColor: "lightgrey",
-                borderRadius: 0,
-              }}
-              fillColor="green"
-              isChecked={isFoodInCart(food, cartItems)}
-              onPress={(checkboxValue) => selectItem(food, checkboxValue)}
-            />
+            {hideCheckbox ? (
+              <></>
+            ) : (
+              <BouncyCheckbox
+                iconStyle={{
+                  borderColor: "lightgrey",
+                  borderRadius: 0,
+                }}
+                fillColor="green"
+                isChecked={isFoodInCart(food, cartItems)}
+                onPress={(checkboxValue) => selectItem(food, checkboxValue)}
+              />
+            )}
             <FoodInfo food={food} />
-            <FoodImage food={food} />
+            <FoodImage food={food} marginLeft={marginLeft ? MenuItems : 0} />
           </View>
           <Divider
             width={0.5}
@@ -109,11 +80,16 @@ const FoodInfo = (props) => (
   </View>
 );
 
-const FoodImage = (props) => (
+const FoodImage = ({ marginLeft, ...props }) => (
   <View>
     <Image
       source={{ uri: props.food.image }}
-      style={{ width: 100, height: 100, borderRadius: 8 }}
+      style={{
+        width: 100,
+        height: 100,
+        borderRadius: 8,
+        marginLeft: marginLeft,
+      }}
     />
   </View>
 );

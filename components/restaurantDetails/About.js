@@ -2,7 +2,6 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 
 export default function About(props) {
-  console.log(props.route.params.image);
   const { name, image, price, reviews, rating, categories } =
     props.route.params;
   const formatCategories = categories.map((cat) => cat.title).join(" . ");
